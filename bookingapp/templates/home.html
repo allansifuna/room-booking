@@ -1,0 +1,83 @@
+{%extends 'layout.html'%}
+{%block content%}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+<div class="col-lg-6 m-auto">
+      {%with messages= get_flashed_messages(with_categories=true)%}
+              {%if messages%}
+              {%for category,message in messages%}
+              <div class="alert alert-{{category}} alert-dismissible fade show",role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span
+                  </button>
+                </div>
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+    </div>
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">
+        ROOMS
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+            <thead>
+              <tr>
+                <th>Room Number</th>
+                <th>Status</th>
+                <th>Delete Room</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for room in rooms%}
+              <tr>
+                <td>{{room.room_no}}</td>
+               <td><a class="btn border-bottom-info" href="{{url_for('user.view_bookings',room_id=room.id)}}"> View Bookings</a></td>
+                <td><a class="btn border-bottom-danger" href="{{url_for('user.delete_room',room_id=room.id)}}"> Delete Room</a></td>
+
+
+                </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+
+          </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- End of Main Content -->
+
+  <!-- Footer -->
+  <footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <span>Copyright &copy; BookingAPP <span id="year"></span> </span>
+              <script>
+                  document.getElementById("year").innerHTML=new Date().getFullYear();
+              </script>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+{%endblock content%}

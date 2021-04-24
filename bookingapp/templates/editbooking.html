@@ -1,0 +1,112 @@
+{%extends 'layout.html'%}
+{%block content%}
+<div class="container">
+  <div class="col-md-12 m-auto text-center mb-4">
+    <h1 class="h3 mb-0 text-gray-800"> ADD ROOM</h1>
+    <div class="col-lg-6 m-auto">
+      {%with messages= get_flashed_messages(with_categories=true)%}
+              {%if messages%}
+              {%for category,message in messages%}
+              <div class="alert alert-{{category}} alert-dismissible fade show",role="alert">
+                {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                {%endfor%}
+                {%endif%}
+                {%endwith%}
+    </div>
+  </div>
+  <br>
+  <div class="card o-hidden border-0 shadow-lg col-lg-6 my-5  mt-5 m-auto">
+    <div class="card-body p-0">
+      <!-- Nested Row within Card Body -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="p-5">
+              <form class="user" method="POST" enctype="multipart/form-data">
+                {{form.hidden_tag()}}
+                <div class="form-group">
+                  {%if form.first_name.errors%}
+                  {{form.first_name(class="form-control form-control-user is-invalid")}}
+                  <div class="invalid-feedback">
+                    {%for error in form.first_name.errors%}
+                    <span>{{error}}</span><br />
+                    {%endfor%}
+                  </div>
+                  {%else%}
+                  {{form.first_name(class="form-control form-control-user",placeholder="Enter Room Number...")}}
+                  {%endif%}
+                </div>
+                <div class="form-group">
+                  {%if form.last_name.errors%}
+                  {{form.last_name(class="form-control form-control-user is-invalid")}}
+                  <div class="invalid-feedback">
+                    {%for error in form.last_name.errors%}
+                    <span>{{error}}</span><br />
+                    {%endfor%}
+                  </div>
+                  {%else%}
+                  {{form.last_name(class="form-control form-control-user",placeholder="Enter Room Number...")}}
+                  {%endif%}
+                </div>
+                <div class="form-group">
+                  {%if form.room_number.errors%}
+                  {{form.room_number(class="form-control form-control-user is-invalid")}}
+                  <div class="invalid-feedback">
+                    {%for error in form.room_number.errors%}
+                    <span>{{error}}</span><br />
+                    {%endfor%}
+                  </div>
+                  {%else%}
+                  {{form.room_number(class="form-control form-control-user",placeholder="Enter Room Number...")}}
+                  {%endif%}
+                </div>
+                <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          {{form.start_time.label(class="form-control-label text-dark text-sm mb-1")}}
+                      {%if form.start_time.errors%}
+                            {{form.start_time(class="form-control is-invalid",id="exampleInputText")}}
+                            <div class="invalid-feedback">
+                              {%for error in form.start_time.errors%}
+                              <span>{{error}}</span><br />
+                              {%endfor%}
+                            </div>
+                            {%else%}
+                            {{form.start_time(class="form-control",id="exampleInputText",placeholder="Enter Phone Number...")}}
+                            {%endif%}
+
+                    </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          {{form.end_time.label(class="form-control-label text-dark text-sm mb-1")}}
+                      {%if form.end_time.errors%}
+                            {{form.end_time(class="form-control form-control-user is-invalid",id="exampleInputSelect")}}
+                            <div class="invalid-feedback">
+                              {%for error in form.end_time.errors%}
+                              <span>{{error}}</span><br />
+                              {%endfor%}
+                            </div>
+                            {%else%}
+                            {{form.end_time(class="form-control ",id="exampleInputSelect")}}
+                            {%endif%}
+
+                    </div>
+                      </div>
+                    </div>
+                <button type="submit" class="btn btn-primary btn-user btn-block">
+                  Edit Booking
+                </button>
+                <hr>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {%endblock content%}
